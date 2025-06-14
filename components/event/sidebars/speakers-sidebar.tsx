@@ -5,12 +5,11 @@ import Image from "next/image"
 import { Sidebar } from "@/components/sidebar"
 import { SpeakerCard } from "@/components/speaker-card"
 import { SearchFilter } from "@/components/search-filter"
-import type { CleanEventData } from "@/lib/types/api"
 
 interface SpeakersSidebarProps {
   isOpen: boolean
   onClose: () => void
-  eventData: CleanEventData
+  eventData: any
   showDetail: boolean
   selectedItem: any
   onBack: () => void
@@ -44,7 +43,7 @@ export function SpeakersSidebar({
       isOpen={isOpen}
       onClose={onClose}
       title={showDetail ? selectedItem?.name : "Intervenants"}
-      width="50%"
+      width="70%"
       showBackButton={showDetail}
       onBack={onBack}
     >
@@ -58,7 +57,7 @@ export function SpeakersSidebar({
           />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-6">
-            {filteredSpeakers.map((speaker, index) => (
+            {filteredSpeakers.map((speaker: any, index: any) => (
               <SpeakerCard key={index} speaker={speaker} onClick={() => onSpeakerClick(speaker)} />
             ))}
           </div>

@@ -144,7 +144,7 @@ export default function EventPageClient({ eventData }: EventPageClientProps) {
         eventData={eventData}
       />
 
-      {/* <SpeakersSidebar
+      <SpeakersSidebar
         isOpen={activeSidebar === "speakers"}
         onClose={closeSidebar}
         eventData={eventData}
@@ -153,14 +153,14 @@ export default function EventPageClient({ eventData }: EventPageClientProps) {
         onBack={handleBackFromDetail}
         onSpeakerClick={handleSpeakerClick}
       />
- */}
-      {/* <LocationSidebar isOpen={activeSidebar === "location"} onClose={closeSidebar} eventData={eventData} />
+
+      {/* <LocationSidebar isOpen={activeSidebar === "location"} onClose={closeSidebar} eventData={eventData} /> */}
 
       <AboutSidebar isOpen={activeSidebar === "about"} onClose={closeSidebar} eventData={eventData} />
 
-      <NetworkSidebar isOpen={activeSidebar === "network"} onClose={closeSidebar} networkData={networkData} />
+      {/* <NetworkSidebar isOpen={activeSidebar === "network"} onClose={closeSidebar} networkData={networkData} /> */}
 
-      <PartnersSidebar
+      {/* <PartnersSidebar
         isOpen={activeSidebar === "partners"}
         onClose={closeSidebar}
         eventData={eventData}

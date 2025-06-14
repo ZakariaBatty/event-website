@@ -22,7 +22,7 @@ export function SpeakerCard({
     >
       <div className="aspect-square overflow-hidden">
         <Image
-          src={speaker.pdfUrl || "/placeholder.svg?height=300&width=300"}
+          src={speaker.avatar || "/placeholder.svg?height=300&width=300"}
           alt={speaker.name}
           width={300}
           height={300}
