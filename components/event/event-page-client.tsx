@@ -15,6 +15,7 @@ import { PartnersSidebar } from "@/components/event/sidebars/partners-sidebar"
 import { NotificationsSidebar } from "@/components/event/sidebars/notifications-sidebar"
 import { HotelsSidebar } from "@/components/event/sidebars/hotels-sidebar"
 import { QRCodesSidebar } from "@/components/event/sidebars/qrcodes-sidebar"
+import ModernProgram from "./modern-program/modern-program"
 
 interface EventPageClientProps {
   eventData: any
@@ -131,11 +132,16 @@ export default function EventPageClient({ eventData }: EventPageClientProps) {
       <FloatingActionButton onSelect={(type) => handleCardClick(type)} />
 
       {/* Sidebars */}
-      <ProgramSidebar
+      {/* <ProgramSidebar
         isOpen={activeSidebar === "program"}
         onClose={closeSidebar}
         eventData={eventData}
         onSpeakerClick={handleSpeakerClick}
+      /> */}
+      <ModernProgram
+        isOpen={activeSidebar === "program"}
+        onClose={closeSidebar}
+        eventData={eventData}
       />
 
       {/* <SpeakersSidebar

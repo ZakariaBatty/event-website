@@ -32,7 +32,7 @@ export function ProgramSidebar({ isOpen, onClose, eventData, onSpeakerClick }: P
           <p className="text-gray-700">- {eventData.location} -</p>
         </div>
 
-        <div className="p-4">
+        <div className="p-4 pt-4">
           {filteredProgram.map((day: any, dayIndex: any) => (
             <ProgramCard key={dayIndex} date={day.date} items={day.items} onSpeakerClick={onSpeakerClick} />
           ))}

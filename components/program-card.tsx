@@ -13,7 +13,7 @@ export function ProgramCard({
   onSpeakerClick: (speaker: any) => void
 }) {
   const [isExpanded, setIsExpanded] = useState(true)
-
+  console.log("ProgramCard rendered with date:", date, "and items:", items)
   return (
     <div className="mb-6 overflow-hidden rounded-lg border border-gray-200 shadow-sm">
       <div
