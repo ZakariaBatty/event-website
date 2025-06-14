@@ -22,7 +22,7 @@ export function ProgramSidebar({ isOpen, onClose, eventData, onSpeakerClick }: P
   }, [])
 
   return (
-    <Sidebar isOpen={isOpen} onClose={onClose} title="Programme de l'événement" width="60%">
+    <Sidebar isOpen={isOpen} onClose={onClose} title="Programme de l'événement" width="70%">
       <div className="bg-[#f5f9ff] min-h-full">
         <div className="text-center py-6 bg-white border-b">
           <h2 className="text-2xl font-bold text-[#004258]">{eventData.title}</h2>

@@ -106,20 +106,17 @@ export default function EventPageClient({ eventData }: EventPageClientProps) {
     setShowFloorPlan(false)
   }
 
-  const handleScroll = (scrolled: boolean) => {
-    setIsScrolled(scrolled)
-  }
 
   return (
     <div className="min-h-screen bg-[#f5f9ff]">
       <AnimatedBackground />
-
+      {/* 
       <EventHeader
         eventData={eventData}
         isScrolled={isScrolled}
         onScroll={handleScroll}
         onCardClick={handleCardClick}
-      />
+      /> */}
 
       <EventHero
         eventData={eventData}
@@ -132,17 +129,17 @@ export default function EventPageClient({ eventData }: EventPageClientProps) {
       <FloatingActionButton onSelect={(type) => handleCardClick(type)} />
 
       {/* Sidebars */}
-      {/* <ProgramSidebar
+      <ProgramSidebar
         isOpen={activeSidebar === "program"}
         onClose={closeSidebar}
         eventData={eventData}
         onSpeakerClick={handleSpeakerClick}
-      /> */}
-      <ModernProgram
+      />
+      {/* <ModernProgram
         isOpen={activeSidebar === "program"}
         onClose={closeSidebar}
         eventData={eventData}
-      />
+      /> */}
 
       <SpeakersSidebar
         isOpen={activeSidebar === "speakers"}
@@ -158,7 +155,7 @@ export default function EventPageClient({ eventData }: EventPageClientProps) {
 
       <AboutSidebar isOpen={activeSidebar === "about"} onClose={closeSidebar} eventData={eventData} />
 
-      {/* <NetworkSidebar isOpen={activeSidebar === "network"} onClose={closeSidebar} networkData={networkData} /> */}
+      <NetworkSidebar isOpen={activeSidebar === "network"} onClose={closeSidebar} networkData={eventData.qrCodes} />
 
       {/* <PartnersSidebar
         isOpen={activeSidebar === "partners"}
@@ -176,7 +173,7 @@ export default function EventPageClient({ eventData }: EventPageClientProps) {
         notificationsData={notificationsData}
       />
 
-      <HotelsSidebar isOpen={activeSidebar === "hotels"} onClose={closeSidebar} hotelData={hotelData} />
+      <HotelsSidebar isOpen={activeSidebar === "hotels"} onClose={closeSidebar} hotelData={hotelData} /> */}
 
       <QRCodesSidebar
         isOpen={activeSidebar === "qrcodes"}
@@ -188,7 +185,7 @@ export default function EventPageClient({ eventData }: EventPageClientProps) {
         onBack={handleBackFromDetail}
         onQRCodeClick={handleQRCodeClick}
         onFloorPlanClick={handleFloorPlanClick}
-      /> */}
+      />
     </div>
   )
 }

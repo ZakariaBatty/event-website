@@ -57,9 +57,9 @@ export function EventCards({ eventData, onCardClick }: EventCardsProps) {
   ]
 
   return (
-    <main className="max-w-7xl mx-auto px-4 pb-20 relative z-10">
+    <main className="max-w-5xl mx-auto px-4 pb-20 relative z-10">
       <h2 className="text-2xl font-bold text-[#004258] mb-6 text-center">Accès rapide</h2>
-      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
         {cardItems
           .filter((item) => item.show)
           .map((item, index) => (
