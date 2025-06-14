@@ -5,6 +5,7 @@ import Image from "next/image"
 import { Sidebar } from "@/components/sidebar"
 import { SpeakerCard } from "@/components/speaker-card"
 import { SearchFilter } from "@/components/search-filter"
+import { Clock, MapPin } from "lucide-react"
 
 interface SpeakersSidebarProps {
   isOpen: boolean
@@ -26,7 +27,6 @@ export function SpeakersSidebar({
   onSpeakerClick,
 }: SpeakersSidebarProps) {
   const [filteredSpeakers, setFilteredSpeakers] = useState(eventData.speakers)
-
   const handleFilterSpeakers = useCallback((filtered: any) => {
     setFilteredSpeakers(filtered)
   }, [])
@@ -89,11 +89,54 @@ export function SpeakersSidebar({
                       `Expert reconnu dans son domaine, ${selectedItem.name} apporte une expérience précieuse et des connaissances approfondies à notre événement.`}
                   </p>
                 </div>
+
+                <div>
+                  <h3 className="text-lg font-medium">Sessions</h3>
+                  {selectedItem.sideEventItem && selectedItem.sideEventItem.length > 0 ? (
+                    <ul className="mt-2 space-y-2">
+                      {selectedItem.sideEventItem.map((item: any) => {
+                        return (
+                          <div key={item.id} className="border rounded-md p-3">
+                            <div className="flex flex-col gap-1">
+                              <div className="flex justify-between">
+                                <div className="flex items-center gap-2 text-sm font-medium">
+                                  {item.type === "MASTER_CLASS" && <span className="text-blue-500">MASTER CLASS:</span>}
+                                  {item.type === "SIDE_EVENT" && <span className="text-gray-700">SIDE EVENT:</span>}
+                                  {item.type === "NETWORKING" && <span className="text-green-600">NETWORKING:</span>}
+                                  {item.type === "SHOWCASE" && <span className="text-amber-600">SHOWCASE:</span>}
+                                  {item.type === "ROUNDTABLE" && <span className="text-purple-600">ROUNDTABLE:</span>}
+                                  {item.type === "WORKSHOP" && <span className="text-amber-600">WORKSHOP:</span>}
+                                  {item.type === "KEYNOTE" && <span className="text-red-600">KEYNOTE:</span>}
+                                  {item.type === "PANEL" && <span className="text-yellow-600">PANEL:</span>}
+                                  <div className="text-base font-semibold">{item.title}</div>
+                                </div>
+                              </div>
+                              <div className="text-sm text-gray-500 flex items-center gap-1">
+                                <Clock className="h-4 w-4" />
+                                <span>{item.time || "Time not set"}</span>
+                                {item.location && (
+                                  <>
+                                    <MapPin className="h-4 w-4" />
+                                    <span>{item.location}</span>
+                                  </>
+                                )}
+                              </div>
+                              <p className="mt-2 text-sm">{item.description}</p>
+                            </div>
+                          </div>
+                        )
+                      })}
+                    </ul>
+                  ) : (
+                    <p className="mt-2 text-gray-500">No sessions assigned</p>
+                  )}
+                </div>
               </div>
             </div>
           </div>
         </div>
-      )}
-    </Sidebar>
+      )
+      }
+    </Sidebar >
   )
 }

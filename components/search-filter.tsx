@@ -42,12 +42,23 @@ export function SearchFilter({
         }
 
         // For regular items (like speakers)
-        return Object.values(item).some((val) => {
-          if (typeof val === "string") {
-            return val.toLowerCase().includes(searchTerm.toLowerCase())
-          }
-          return false
-        })
+        return (
+          Object.values(item).some((val) => {
+            if (typeof val === "string") {
+              return val.toLowerCase().includes(searchTerm.toLowerCase())
+            }
+            return false
+          }) ||
+          (item.sideEventItem &&
+            item.sideEventItem.some((sei: any) => {
+              return (
+                (sei.title && sei.title.toLowerCase().includes(searchTerm.toLowerCase())) ||
+                (sei.description && sei.description.toLowerCase().includes(searchTerm.toLowerCase())) ||
+                (sei.location && sei.location.toLowerCase().includes(searchTerm.toLowerCase()))
+              )
+            }))
+        )
+
       })
     }
 
@@ -98,9 +109,8 @@ export function SearchFilter({
         <div className="flex flex-wrap gap-2">
           <button
             onClick={() => setActiveFilter(null)}
-            className={`px-3 py-1 text-sm rounded-full transition-colors ${
-              activeFilter === null ? "bg-[#004258] text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-            }`}
+            className={`px-3 py-1 text-sm rounded-full transition-colors ${activeFilter === null ? "bg-[#004258] text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+              }`}
           >
             Tous
           </button>
@@ -108,11 +118,10 @@ export function SearchFilter({
             <button
               key={option.value}
               onClick={() => setActiveFilter(option.value)}
-              className={`px-3 py-1 text-sm rounded-full transition-colors ${
-                activeFilter === option.value
+              className={`px-3 py-1 text-sm rounded-full transition-colors ${activeFilter === option.value
                   ? "bg-[#004258] text-white"
                   : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-              }`}
+                }`}
             >
               {option.label}
             </button>
