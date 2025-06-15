@@ -167,13 +167,13 @@ export default function EventPageClient({ eventData }: EventPageClientProps) {
         onPartnerClick={handlePartnerClick}
       /> */}
 
-      {/* <NotificationsSidebar
+      <NotificationsSidebar
         isOpen={activeSidebar === "notifications"}
         onClose={closeSidebar}
         notificationsData={notificationsData}
       />
 
-      <HotelsSidebar isOpen={activeSidebar === "hotels"} onClose={closeSidebar} hotelData={hotelData} /> */}
+      {/* <HotelsSidebar isOpen={activeSidebar === "hotels"} onClose={closeSidebar} hotelData={hotelData} /> */}
 
       <QRCodesSidebar
         isOpen={activeSidebar === "qrcodes"}
