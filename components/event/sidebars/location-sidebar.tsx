@@ -3,12 +3,12 @@
 import Image from "next/image"
 import { MapPin } from "lucide-react"
 import { Sidebar } from "@/components/sidebar"
-import type { CleanEventData } from "@/lib/types/api"
+
 
 interface LocationSidebarProps {
   isOpen: boolean
   onClose: () => void
-  eventData: CleanEventData
+  eventData: any
 }
 
 export function LocationSidebar({ isOpen, onClose, eventData }: LocationSidebarProps) {

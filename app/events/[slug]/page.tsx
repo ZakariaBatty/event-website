@@ -1,20 +1,18 @@
 import EventPageClient from "@/components/event/event-page-client"
 import { notFound } from "next/navigation"
 
-// API base URL ديالك
 const API_BASE_URL = "https://event-management-dev.vercel.app"
 
 type Params = {
-  params: {
+  params: Promise<{
     slug: string
-  }
+  }>
 }
 
-// جلب البيانات من API
 async function getEventData(slug: string) {
   try {
     const res = await fetch(`${API_BASE_URL}/api/events/${slug}`, {
-      next: { revalidate: 10 }, // ISR: cache for 10 seconds
+      next: { revalidate: 10 },
     })
 
     if (!res.ok) return null
@@ -27,16 +25,17 @@ async function getEventData(slug: string) {
   }
 }
 
-// توليد الميتاداتا SEO
 export async function generateMetadata({ params }: Params) {
-  if (!params?.slug) {
+  const resolvedParams = await params
+
+  if (!resolvedParams?.slug) {
     return {
       title: "Événements",
       description: "Découvrez nos événements à venir.",
     }
   }
 
-  const eventData = await getEventData(params.slug)
+  const eventData = await getEventData(resolvedParams.slug)
 
   if (!eventData) {
     return {
@@ -63,16 +62,15 @@ export async function generateMetadata({ params }: Params) {
   }
 }
 
-// (اختياري) توليد params للـ static generation
 export async function generateStaticParams() {
-  // إذا عندك API كيرجع list ديال slugs، يمكن تجيبها هنا
-  // و ترجعها على شكل [{ slug: "..." }, ...]
   return []
 }
 
 // الصفحة الرئيسية ديال الحدث
 export default async function EventPage({ params }: Params) {
-  const eventData = await getEventData(params.slug)
+  // await params عشان نجيبوا من Promise
+  const resolvedParams = await params
+  const eventData = await getEventData(resolvedParams.slug)
 
   if (!eventData) notFound()
 
