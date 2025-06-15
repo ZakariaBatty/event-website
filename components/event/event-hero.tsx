@@ -3,7 +3,7 @@
 import Image from "next/image"
 import { Calendar, Mic } from "lucide-react"
 import { CountdownTimer } from "@/components/countdown-timer"
-import { formatDateRange } from "@/lib/utils"
+import { cn, formatDateRange } from "@/lib/utils"
 
 interface EventHeroProps {
   eventData: any
@@ -17,21 +17,22 @@ export function EventHero({ eventData, onProgramClick, onSpeakersClick }: EventH
       <div className="mx-auto max-w-7xl">
         <div className="flex justify-center mb-6">
           {/* eventData.logo ||  */}
-          <Image
-            src={"/placeholder.svg?height=120&width=120&text=Logo"}
-            alt="Logo"
-            width={120}
-            height={120}
-            className="rounded-full shadow-lg"
-          />
+          {
+            eventData.coverImage && (
+              <Image
+                src={eventData.logo}
+                alt="Logo"
+                width={400} height={146} className="mx-auto mb-8" />
+            )
+          }
         </div>
-        <h1 className="text-4xl md:text-5xl font-bold text-[#004258] mb-4">{eventData.title}</h1>
-        <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-6">{"L'Aquaculture de Demain"}</p>
+        <h1 className={cn("text-4xl md:text-5xl font-bold mb-4", eventData.coverImage ? "text-white" : "text-[#004258]")}>{eventData.title}</h1>
+        <p className={cn("text-xl max-w-3xl mx-auto mb-6", eventData.coverImage ? "text-gray-300" : "text-gray-600")}>{"L'Aquaculture de Demain"}</p>
         <div className="inline-block bg-white px-4 py-2 rounded-full text-amber-600 font-medium shadow-sm">
           {formatDateRange(eventData.startDate, eventData.endDate)} • {eventData.location}
         </div>
 
-        <CountdownTimer targetDate={eventData.startDate} />
+        <CountdownTimer targetData={{ startDate: eventData.startDate, coverImg: eventData.coverImage }} />
 
         <div className="flex flex-wrap justify-center gap-4 mt-6">
           <button

@@ -1,8 +1,9 @@
 "use client"
 
+import { cn } from "@/lib/utils"
 import { useEffect, useState } from "react"
 
-export function CountdownTimer({ targetDate }: { targetDate: string }) {
+export function CountdownTimer({ targetData }: { targetData: { startDate: string; coverImg: string | null } }) {
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,
@@ -12,7 +13,7 @@ export function CountdownTimer({ targetDate }: { targetDate: string }) {
   const [isExpired, setIsExpired] = useState(false)
 
   useEffect(() => {
-    const target = new Date(targetDate).getTime()
+    const target = new Date(targetData.startDate).getTime()
 
     const calculateTimeLeft = () => {
       const now = new Date().getTime()
@@ -43,12 +44,12 @@ export function CountdownTimer({ targetDate }: { targetDate: string }) {
     }, 1000)
 
     return () => clearInterval(timer)
-  }, [targetDate])
+  }, [targetData])
 
   if (isExpired) {
     return (
       <div className="text-center py-4">
-        <p className="text-lg font-medium text-gray-700">L'événement a commencé!</p>
+        <p className={cn("text-lg font-medium ", targetData.coverImg ? "text-white" : "text-[#004258]")}>L'événement a commencé!</p>
       </div>
     )
   }
@@ -59,25 +60,25 @@ export function CountdownTimer({ targetDate }: { targetDate: string }) {
         <div className="text-3xl font-bold text-[#004258] w-16 h-16 flex items-center justify-center bg-white rounded-lg shadow-sm">
           {timeLeft.days}
         </div>
-        <span className="text-sm text-gray-600 mt-1">Jours</span>
+        <span className={cn("text-sm mt-1", targetData.coverImg ? "text-white" : "text-[#004258]")}>Jours</span>
       </div>
       <div className="flex flex-col items-center">
         <div className="text-3xl font-bold text-[#004258] w-16 h-16 flex items-center justify-center bg-white rounded-lg shadow-sm">
           {timeLeft.hours}
         </div>
-        <span className="text-sm text-gray-600 mt-1">Heures</span>
+        <span className={cn("text-sm mt-1", targetData.coverImg ? "text-white" : "text-[#004258]")}>Heures</span>
       </div>
       <div className="flex flex-col items-center">
         <div className="text-3xl font-bold text-[#004258] w-16 h-16 flex items-center justify-center bg-white rounded-lg shadow-sm">
           {timeLeft.minutes}
         </div>
-        <span className="text-sm text-gray-600 mt-1">Minutes</span>
+        <span className={cn("text-sm mt-1", targetData.coverImg ? "text-white" : "text-[#004258]")}>Minutes</span>
       </div>
       <div className="flex flex-col items-center">
         <div className="text-3xl font-bold text-[#004258] w-16 h-16 flex items-center justify-center bg-white rounded-lg shadow-sm">
           {timeLeft.seconds}
         </div>
-        <span className="text-sm text-gray-600 mt-1">Secondes</span>
+        <span className={cn("text-sm mt-1", targetData.coverImg ? "text-white" : "text-[#004258]")}>Secondes</span>
       </div>
     </div>
   )

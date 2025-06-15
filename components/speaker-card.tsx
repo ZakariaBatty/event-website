@@ -12,6 +12,7 @@ export function SpeakerCard({
   className?: string
   onClick?: () => void
 }) {
+  console.log("SpeakerCard rendered", speaker)
   return (
     <div
       className={cn(
@@ -22,7 +23,7 @@ export function SpeakerCard({
     >
       <div className="aspect-square overflow-hidden">
         <Image
-          src={speaker.pdfUrl || "/placeholder.svg?height=300&width=300"}
+          src={speaker.avatar || "/placeholder.svg?height=300&width=300"}
           alt={speaker.name}
           width={300}
           height={300}
@@ -31,7 +32,7 @@ export function SpeakerCard({
       </div>
       <div className="p-3 sm:p-4">
         <h3 className="font-bold text-sm sm:text-lg text-gray-900 line-clamp-1">{speaker.name}</h3>
-        <p className="text-xs sm:text-sm text-gray-600 line-clamp-1">{speaker.organization}</p>
+        <p className="text-xs sm:text-sm text-gray-600 line-clamp-1">{speaker.organization || "No organization"}</p>
       </div>
     </div>
   )

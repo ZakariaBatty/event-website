@@ -12,7 +12,7 @@ interface SpeakerCardProps {
 export function SpeakerCard({ speaker, onClick }: SpeakerCardProps) {
   return (
     <Card className="hover:shadow-md transition-shadow cursor-pointer" onClick={() => onClick(speaker)}>
-      <CardContent className="p-4 pt-4">
+      <CardContent className="!p-4 !pt-4">
         <div className="flex items-start gap-3">
           <Avatar className="h-12 w-12">
             <AvatarImage src={speaker.avatar || undefined} alt={speaker.name} />

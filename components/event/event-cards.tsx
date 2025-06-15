@@ -1,5 +1,6 @@
 "use client"
 
+import { cn } from "@/lib/utils"
 import { Calendar, MapPin, Info, Wifi, Users, Bell, Hotel, Mic, QrCode } from "lucide-react"
 
 interface EventCardsProps {
@@ -58,20 +59,20 @@ export function EventCards({ eventData, onCardClick }: EventCardsProps) {
 
   return (
     <main className="max-w-7xl mx-auto px-4 pb-20 relative z-10">
-      <h2 className="text-2xl font-bold text-[#004258] mb-6 text-center">Accès rapide</h2>
-      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <h2 className={cn("text-2xl font-bold mb-6 text-center", eventData.coverImage ? "text-white" : "text-[#004258]")}>Accès rapide</h2>
+      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
         {cardItems
           .filter((item) => item.show)
           .map((item, index) => (
             <div
               key={index}
               onClick={() => onCardClick(item.type)}
-              className="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-all duration-200 cursor-pointer border border-gray-100"
+              className="bg-white rounded-lg p-9 shadow-sm hover:shadow-md transition-all duration-200 cursor-pointer border border-gray-100"
             >
               <div className="flex flex-col items-center text-center">
                 <div className="mb-3">{item.icon}</div>
-                <h3 className="font-medium text-gray-900 mb-1">{item.title}</h3>
-                <p className="text-xs text-gray-600 hidden sm:block">{item.description}</p>
+                <h3 className="font-medium text-2xl text-gray-900 mb-1">{item.title}</h3>
+                <p className="text-l text-gray-600  hidden sm:block">{item.description}</p>
               </div>
             </div>
           ))}

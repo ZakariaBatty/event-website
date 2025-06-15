@@ -7,7 +7,7 @@ const API_BASE_URL = "https://event-management-dev.vercel.app"
 async function getEventData(slug: string) {
   try {
     const res = await fetch(`${API_BASE_URL}/api/events/${slug}`, {
-      next: { revalidate: 600 }, // ISR: cache for 10 minutes
+      next: { revalidate: 10 }, // ISR: cache for 10 seconds
     })
 
     if (!res.ok) return null
