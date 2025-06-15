@@ -1,10 +1,8 @@
 "use client"
 
 import { useState, useCallback } from "react"
-import { Download } from "lucide-react"
 import { Sidebar } from "@/components/sidebar"
 import { ProgramCard } from "@/components/program-card"
-import { CalendarButton } from "@/components/calendar-button"
 import { formatDateRange } from "@/lib/utils"
 
 interface ProgramSidebarProps {

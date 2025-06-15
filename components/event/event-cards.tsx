@@ -1,5 +1,6 @@
 "use client"
 
+import { cn } from "@/lib/utils"
 import { Calendar, MapPin, Info, Wifi, Users, Bell, Hotel, Mic, QrCode } from "lucide-react"
 
 interface EventCardsProps {
@@ -58,7 +59,7 @@ export function EventCards({ eventData, onCardClick }: EventCardsProps) {
 
   return (
     <main className="max-w-7xl mx-auto px-4 pb-20 relative z-10">
-      <h2 className="text-2xl font-bold text-[#004258] mb-6 text-center">Accès rapide</h2>
+      <h2 className={cn("text-2xl font-bold mb-6 text-center", eventData.coverImage ? "text-white" : "text-[#004258]")}>Accès rapide</h2>
       <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
         {cardItems
           .filter((item) => item.show)

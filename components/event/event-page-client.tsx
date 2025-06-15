@@ -8,12 +8,9 @@ import { EventHero } from "@/components/event/event-hero"
 import { EventCards } from "@/components/event/event-cards"
 import { ProgramSidebar } from "@/components/event/sidebars/program-sidebar"
 import { SpeakersSidebar } from "@/components/event/sidebars/speakers-sidebar"
-import { LocationSidebar } from "@/components/event/sidebars/location-sidebar"
 import { AboutSidebar } from "@/components/event/sidebars/about-sidebar"
 import { NetworkSidebar } from "@/components/event/sidebars/network-sidebar"
-import { PartnersSidebar } from "@/components/event/sidebars/partners-sidebar"
 import { NotificationsSidebar } from "@/components/event/sidebars/notifications-sidebar"
-import { HotelsSidebar } from "@/components/event/sidebars/hotels-sidebar"
 import { QRCodesSidebar } from "@/components/event/sidebars/qrcodes-sidebar"
 import ModernProgram from "./modern-program/modern-program"
 
@@ -26,28 +23,10 @@ export default function EventPageClient({ eventData }: EventPageClientProps) {
   const [activeSidebar, setActiveSidebar] = useState<string | null>(null)
   const [selectedItem, setSelectedItem] = useState<any>(null)
   const [showSpeakerDetail, setShowSpeakerDetail] = useState(false)
-  const [showPartnerDetail, setShowPartnerDetail] = useState(false)
   const [showQRCodeDetail, setShowQRCodeDetail] = useState(false)
   const [showFloorPlan, setShowFloorPlan] = useState(false)
-  const [isScrolled, setIsScrolled] = useState(false)
 
-  // Create mock data for sections not in the API
-  const networkData = {
-    name: "EventWiFi",
-    password: "Event2025",
-    available: true,
-  }
 
-  const hotelData = [
-    {
-      name: "Hôtel près de l'événement",
-      stars: 4,
-      description: "Hôtel recommandé proche du lieu de l'événement",
-      address: eventData.location || "Lieu de l'événement",
-      website: "#",
-      distance: "1 km de l'événement",
-    },
-  ]
 
   const notificationsData = [
     {
@@ -63,7 +42,6 @@ export default function EventPageClient({ eventData }: EventPageClientProps) {
     setActiveSidebar(type)
     setSelectedItem(item)
     setShowSpeakerDetail(false)
-    setShowPartnerDetail(false)
     setShowQRCodeDetail(false)
     setShowFloorPlan(false)
   }
@@ -72,7 +50,6 @@ export default function EventPageClient({ eventData }: EventPageClientProps) {
     setActiveSidebar(null)
     setSelectedItem(null)
     setShowSpeakerDetail(false)
-    setShowPartnerDetail(false)
     setShowQRCodeDetail(false)
     setShowFloorPlan(false)
   }
@@ -83,11 +60,6 @@ export default function EventPageClient({ eventData }: EventPageClientProps) {
       setActiveSidebar("speakers")
     }
     setShowSpeakerDetail(true)
-  }
-
-  const handlePartnerClick = (participant: any) => {
-    setSelectedItem(participant)
-    setShowPartnerDetail(true)
   }
 
   const handleQRCodeClick = (qrCode: any) => {
@@ -101,14 +73,17 @@ export default function EventPageClient({ eventData }: EventPageClientProps) {
 
   const handleBackFromDetail = () => {
     setShowSpeakerDetail(false)
-    setShowPartnerDetail(false)
     setShowQRCodeDetail(false)
     setShowFloorPlan(false)
   }
 
 
   return (
-    <div className="min-h-screen bg-[#f5f9ff]">
+    <div className="min-h-screen bg-[#f5f9ff]"
+      style={{
+        backgroundImage: `url(${eventData.coverImage || null})`,
+      }}
+    >
       <AnimatedBackground />
       {/* 
       <EventHeader
