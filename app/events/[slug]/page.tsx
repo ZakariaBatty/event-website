@@ -22,16 +22,15 @@ async function getEventData(slug: string) {
 
 // 👇 Generate SEO metadata
 export async function generateMetadata({ params }: { params: { slug: string } }) {
-  const url = await params
 
-  if (!url || !url.slug) {
+  if (!params || !params.slug) {
     return {
       title: "Événements",
       description: "Découvrez nos événements à venir.",
     }
   }
 
-  const eventData = await getEventData(url.slug)
+  const eventData = await getEventData(params.slug)
 
   if (!eventData) {
     return {
